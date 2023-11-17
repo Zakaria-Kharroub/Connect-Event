@@ -90,3 +90,9 @@ CREATE TABLE retour (
 ALTER TABLE billet
 ADD COLUMN id_participant INT,
 ADD FOREIGN KEY (id_participant) REFERENCES participant(id);
+
+
+
+
+
+-- insertion de table 
