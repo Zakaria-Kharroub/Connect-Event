@@ -5,7 +5,7 @@ USE connect_event;
 -- la creation de table organisateur 
 CREATE TABLE organisateur (
     id INT AUTO_INCREMENT PRIMARY KEY,
- name VARCHAR(255),
+    name VARCHAR(255),
     email VARCHAR(255)
 ) ENGINE=InnoDB;
 
@@ -84,11 +84,17 @@ CREATE TABLE retour (
 
 
 
+
+
+
+
 -- j'ai oublier ajouter id_participant dans la table biller
 
 ALTER TABLE billet
 ADD COLUMN id_participant INT,
 ADD FOREIGN KEY (id_participant) REFERENCES participant(id);
+
+
 
 
 
@@ -109,11 +115,16 @@ VALUES
 
 
 -- insertion dans la table organisateur
-INSERT INTO organisateur
+
+INSERT INTO organisateur (name, email)
 VALUES ('BDE group', 'bdegroup@example.com'),
 ('youcode', 'youcode@example.com'),
 ('um6p','um6p@gmail.com'),
 ('simplon','simplon@gmail.com');
+
+
+
+
 
 --  insert dans la table lieu
 INSERT INTO lieu (name, address)
@@ -149,18 +160,58 @@ VALUES
 
 
 -- insertion dans la table billet
-INSERT INTO billet (prix, type, id_evenement)
+INSERT INTO billet (prix, type, id_evenement, id_participant)
 VALUES 
-    (50.00, 'VIP', 1),
-    (30.00, 'Standard', 1),
-    (45.00, 'VIP', 1),
-    (25.00, 'Standard', 2),
-    (55.00, 'VIP', 2),
-    (35.00, 'Standard', 2),
-    (40.00, 'VIP', 1),
-    (28.00, 'Standard', 1),
-    (48.00, 'VIP', 2),
-    (32.00, 'Standard', 2);
+    (50.00, 'VIP', 1, 1),  
+    (30.00, 'Standard', 1, 2), 
+    (45.00, 'VIP', 1, 3), 
+    (45.00, 'VIP', 1, 4),  
+    (25.00, 'Standard', 2, 4),  
+    (55.00, 'VIP', 2, 5), 
+    (35.00, 'Standard', 2, 6), 
+    (35.00, 'Standard', 2, 5), 
+    (40.00, 'VIP', 1, 7);  
+
+
+-- insersion dans la table sponsor
+
+INSERT INTO sponsor (name, email)
+VALUES 
+    ('OCP', 'contact@ocp.ma'),
+    ('Maroc Telecom', 'info@iam.ma'),
+    ('inwi', 'contact@inwi.ma');
+
+-- insersion dans la table pub
+INSERT INTO pub (id_evenement, id_sponsor)
+VALUES 
+    (1, 3),
+    (2, 1),
+    (3, 3),
+    (4, 1),
+    (5, 2),
+    (6, 3),
+    (7, 1),
+    (8, 3),
+    (9, 1),
+    (3, 2);
+
+
+-- insersion dans la table retour
+INSERT INTO retour (note, id_evenement)
+VALUES 
+    ('passable', 1),  
+    ('exelent', 2),   
+    ('bon', 3),       
+    ('passable', 4), 
+    ('exelent', 5),  
+    ('bon', 6),      
+    ('passable', 7),  
+    ('exelent', 8),   
+    ('bon', 9);     
+
+
+
+
 
 
 
