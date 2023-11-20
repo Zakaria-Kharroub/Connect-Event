@@ -212,6 +212,34 @@ VALUES
 
 
 
+select * FROM participant 
+
+
+-- afficher combien de nombre de chaque type de billet
+SELECT type , COUNT(*) as 'les types'
+FROM billet
+GROUP BY type
+
+
+-- afficher le nombre de billet de type VIP
+SELECT type , COUNT(*) as 'les types'
+FROM billet
+GROUP BY type
+HAVING type = 'VIP';
+
+
+-- afficher les les evenements en ordre alphabetique
+SELECT *
+FROM evenement 
+ORDER BY name
+
+
+
+-- afficher les noms des organisateur qu'ill sont ps organiser un evenement 
+SELECT organisateur.name
+FROM organisateur
+WHERE id NOT IN (SELECT DISTINCT id_organisateur FROM evenement);
+
 
 
 
