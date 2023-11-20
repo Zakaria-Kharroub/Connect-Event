@@ -234,11 +234,57 @@ FROM evenement
 ORDER BY name
 
 
+-- afficher les noms des organisateur qui oraniser un evenement
+SELECT organisateur.name
+FROM organisateur
+WHERE id IN (SELECT DISTINCT id_organisateur FROM evenement);
 
 -- afficher les noms des organisateur qu'ill sont ps organiser un evenement 
+-- ajout NOT dans la requette
 SELECT organisateur.name
 FROM organisateur
 WHERE id NOT IN (SELECT DISTINCT id_organisateur FROM evenement);
+
+
+-- delete la line de id 5 dans la table retour
+USE gesion
+DELETE FROM retour
+WHERE id = 5;
+
+
+-- isersion au autre line dans la table retour 
+
+INSERT INTO retour (note, id_evenement)
+VALUES ('passable', 8);
+
+
+
+
+-- modifier name de evenemrnt de id = 8
+UPDATE evenement
+SET name = 'github'
+WHERE id = 8;
+
+
+
+INSERT INTO billet(prix,type,id_evenement,id_participant)
+VALUES(80,'VIP',6,7);
+SELECT * from billet
+
+-- affciher name de evement et name de paricipant et type de billet de parcipant participe dans evenement de id 1 = joureu f'integration
+SELECT DISTINCT e.name AS name_event, p.name AS name_participant, b.type AS type_billet
+FROM evenement e
+JOIN billet b ON e.id = b.id_evenement
+JOIN participant p ON b.id_participant = p.id
+WHERE e.id = 1;
+
+
+
+
+
+
+
+
 
 
 
